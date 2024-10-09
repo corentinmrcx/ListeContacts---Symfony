@@ -21,3 +21,44 @@
 Lancer un projet phpstorm a partir du terminal :
 phpstorm . &
 ```
+
+### 3.  Mise en place de scripts Composer
+
+- Ajout d'un script **Start** qui lance le serveur Web de test
+    ```
+    "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "symfony serve"
+    ],
+   ```
+- Ajout d'un script **test:phpcs** qui lance la commande de vérification du code :
+    ```
+    "test:phpcs": [
+        "php vendor/bin/php-cs-fixer fix --dry-run"
+    ],
+  ```
+- Ajout d'un script **fix:phpcs** qui lance la commande de correction du code : 
+    ```
+    "fix:phpcs": [
+        "php vendor/bin/php-cs-fixer fix"
+    ],
+  ```
+- Ajout d'un script **test:twigcs** qui lance la commande de vérification du code par Twig CS Fixer :
+    ```
+    "test:twigcs": [
+        "php vendor/bin/twig-cs-fixer lint"
+    ],
+    ```
+- AJout d'un script **fix:twigcs** qui lance la commande de correction du code par Twig CS Fixer:
+    ```
+    "fix:twigcs": [
+        "php vendor/bin/twig-cs-fixer fix"
+    ]
+    ```
+
+
+
+
+
+
+

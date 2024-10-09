@@ -82,6 +82,27 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "symfony serve"
+        ],
+
+        "test:phpcs": [
+            "php vendor/bin/php-cs-fixer fix --dry-run"
+        ],
+
+        "fix:phpcs": [
+            "php vendor/bin/php-cs-fixer fix"
+        ],
+
+        "test:twigcs": [
+            "php vendor/bin/twig-cs-fixer lint"
+        ],
+
+        "fix:twigcs": [
+            "php vendor/bin/twig-cs-fixer fix"
         ]
     },
     "conflict": {
@@ -94,6 +115,7 @@
         }
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.64",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.3.*",
         "symfony/css-selector": "6.3.*",
@@ -101,6 +123,7 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/phpunit-bridge": "^7.1",
         "symfony/stopwatch": "6.3.*",
-        "symfony/web-profiler-bundle": "6.3.*"
+        "symfony/web-profiler-bundle": "6.3.*",
+        "vincentlanglet/twig-cs-fixer": "^2.12"
     }
 }
