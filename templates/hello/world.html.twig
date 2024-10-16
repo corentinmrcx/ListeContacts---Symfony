@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hello {{name}}</h1>
+    {% for i in 0..10 %}
+        <p style="color: {{ cycle(["red", "green"], loop.index0) }}">Hello {{ name | capitalize }} ! ({{ i | format_number({min_integer_digit:2})}})</p>
+    {% endfor %}
 {% endblock %}
 
 {% block title %}
