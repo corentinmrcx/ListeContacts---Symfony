@@ -15,9 +15,9 @@ class HelloController extends AbstractController
     }
 
     #[Route('/hello/{name}/{times}', name: 'app_hello_manytimes', requirements: ['times' => '\d+'], defaults: ['times' => 3])]
-    public function manyTimes(string $name, int $times) : Response
+    public function manyTimes(string $name, int $times): Response
     {
-        if ($times == 0 || $times > 10){
+        if (0 == $times || $times > 10) {
             return $this->redirectToRoute('app_hello_manytimes', ['name' => $name]);
         }
 
