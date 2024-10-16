@@ -11,9 +11,7 @@ class HelloController extends AbstractController
     #[Route('/hello', name: 'app_hello')]
     public function index(): Response
     {
-        return $this->render('hello/index.html.twig', [
-            'controller_name' => 'HelloController',
-        ]);
+        return $this->render('hello/index.html.twig');
     }
 
     #[Route('/hello/{name}/{times}', name: 'app_hello_manytimes', requirements: ['times' => '\d+'], defaults: ['times' => 3])]
