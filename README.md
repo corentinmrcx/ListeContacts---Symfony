@@ -49,13 +49,25 @@ phpstorm . &
         "php vendor/bin/twig-cs-fixer lint"
     ],
     ```
-- AJout d'un script **fix:twigcs** qui lance la commande de correction du code par Twig CS Fixer:
+- Ajout d'un script **fix:twigcs** qui lance la commande de correction du code par Twig CS Fixer :
     ```
     "fix:twigcs": [
         "php vendor/bin/twig-cs-fixer fix"
     ]
     ```
-
+- Ajout d'un script **test:codeception** qui nettoie le répertoire *_output* et lance les tests de Coception :
+  ```
+  "test:codeception": [
+    "codecept clean",
+    "php vendor/bin/codecept run"
+  ],
+  ```
+- Ajout d'un script **test** qui test la mise en forme du code PHP, TWIG et lance les test avec Codeception : 
+    ```
+    "test": [
+        "@test:phpcs", "@test:twigcs", "@test:codeception"
+    ]
+    ```
 
 
 

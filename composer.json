@@ -104,6 +104,15 @@
 
         "fix:twigcs": [
             "php vendor/bin/twig-cs-fixer fix"
+        ],
+
+        "test:codeception": [
+            "codecept clean",
+            "php vendor/bin/codecept run"
+        ],
+
+        "test": [
+            "@test:phpcs", "@test:twigcs", "@test:codeception"
         ]
     },
     "conflict": {
