@@ -82,5 +82,7 @@ Url pour se connecter a la base de donnée, remplacer par les bonnes données :
 
 -----------------
 
-
+### 5. Commandes importante 
+1. Observer les routes disponibles dans l'environnement de développement : `bin/console debug:router`
+2. Observer les routes disponibles dans l'environnement de production : `bin/console debug:router --env=prod`
 
