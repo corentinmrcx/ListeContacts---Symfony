@@ -73,7 +73,14 @@ phpstorm . &
 Url pour se connecter a la base de donnée, remplacer par les bonnes données : 
 `mysql://votre_user:votre_mdp@serveur:port/nom_database`
 
+-----------------
 
+**Recharger le fichier de configuration ~/.bash_profile :**
+  ```
+    source ~/.bash_profile
+  ```
+
+-----------------
 
 
 
