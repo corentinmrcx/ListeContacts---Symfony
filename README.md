@@ -85,4 +85,8 @@ Url pour se connecter a la base de donnée, remplacer par les bonnes données :
 ### 5. Commandes importante 
 1. Observer les routes disponibles dans l'environnement de développement : `bin/console debug:router`
 2. Observer les routes disponibles dans l'environnement de production : `bin/console debug:router --env=prod`
-
+3. Lancer la création de la base de données : `bin/console doctrine:database:create`
+  --> Symfony crée la base de données a partir du .en.local
+4. Lancer la construction de la migration : `bin/console make:migration`
+5. Lancer l'exécution des migrations : `bin/console doctrine:migrations:migrate`
+6. Demander un bundle avec composer : `composer require --dev <nom bundle>`
