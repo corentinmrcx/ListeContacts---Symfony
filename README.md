@@ -69,6 +69,9 @@ phpstorm . &
     ]
     ```
 
+### 4. DataBase URL
+Url pour se connecter a la base de donnée, remplacer par les bonnes données : 
+`mysql://votre_user:votre_mdp@serveur:port/nom_database`
 
 
 
