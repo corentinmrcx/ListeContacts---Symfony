@@ -109,6 +109,9 @@
 
         "test:codeception": [
             "codecept clean",
+            "php bin/console doctrine:database:drop --force --quiet --env=test",
+            "php bin/console doctrine:database:create --quiet --env=test",
+            "php bin/console doctrine:schema:create --quiet --env=test",
             "php vendor/bin/codecept run"
         ],
 
@@ -135,6 +138,7 @@
     "require-dev": {
         "codeception/codeception": "^5.1",
         "codeception/module-asserts": "^3.0",
+        "codeception/module-doctrine": "^3.1",
         "codeception/module-symfony": "^3.4",
         "doctrine/doctrine-fixtures-bundle": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.64",
