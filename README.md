@@ -22,7 +22,7 @@ Lancer un projet phpstorm a partir du terminal :
 phpstorm . &
 ```
 
-### 3.  Mise en place de scripts Composer
+### 3.  Scripts Composer
 
 - Ajout d'un script **Start** qui lance le serveur Web de test
     ```
@@ -68,10 +68,29 @@ phpstorm . &
         "@test:phpcs", "@test:twigcs", "@test:codeception"
     ]
     ```
+- Ajout d'un script **db** qui éxécute les étapes suivantes :
+  - Destruction forcée de la base de données : `php bin/console doctrine:database:drop --force --if-exists`
+  - Création de la base de données : `php bin/console doctrine:database:create`
+  - Applications des migrations : `php bin/console doctrine:migrations:migrate --no-interaction`
+  - Génération des données : `php bin/console doctrine:fixtures:load --no-interaction`
+  ```php
+  "db": [
+      "php bin/console doctrine:database:drop --force --if-exists\n\n",
+      "php bin/console doctrine:database:create",
+      "php bin/console doctrine:migrations:migrate --no-interaction",
+      "php bin/console doctrine:fixtures:load --no-interaction"
+  ]
+  ```
 
 ### 4. DataBase URL
 Url pour se connecter a la base de donnée, remplacer par les bonnes données : 
 `mysql://votre_user:votre_mdp@serveur:port/nom_database`
+
+### 5. Générateur de Données Factices
+- Lancer la création d'un générateur de données :
+  `bin/console make:fixtures nomFixtures`
+- Lancer création d'une forge de données :
+  `bin/console make:factory`
 
 -----------------
 
@@ -82,7 +101,7 @@ Url pour se connecter a la base de donnée, remplacer par les bonnes données :
 
 -----------------
 
-### 5. Commandes importante 
+### Commandes importante 
 1. Observer les routes disponibles dans l'environnement de développement : `bin/console debug:router`
 2. Observer les routes disponibles dans l'environnement de production : `bin/console debug:router --env=prod`
 3. Lancer la création de la base de données : `bin/console doctrine:database:create`
