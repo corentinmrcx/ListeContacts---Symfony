@@ -29,6 +29,8 @@ use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
  */
 final class ContactFactory extends PersistentProxyObjectFactory
 {
+    private $transliterator;
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -36,6 +38,8 @@ final class ContactFactory extends PersistentProxyObjectFactory
      */
     public function __construct()
     {
+        parent::__construct();
+        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
     }
 
     public static function class(): string
@@ -50,11 +54,21 @@ final class ContactFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
+        $firstname = self::faker()->firstName();
+        $lastname = self::faker()->lastName();
+        $mailFirstName = $this->normalizeName($firstname);
+        $mailLastName = $this->normalizeName($lastname);
+
         return [
-            'email' => self::faker()->text(100),
-            'firstname' => self::faker()->text(30),
-            'lastname' => self::faker()->text(40),
+            'email' => $mailFirstName.'.'.$mailLastName.'@'.self::faker()->domainName(),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
         ];
+    }
+
+    protected function normalizeName(string $name): string
+    {
+        return preg_replace('/[^a-z]/', '-', mb_strtolower($this->transliterator->transliterate($name)));
     }
 
     /**
@@ -64,6 +78,6 @@ final class ContactFactory extends PersistentProxyObjectFactory
     {
         return $this
             // ->afterInstantiate(function(Contact $contact): void {})
-        ;
+            ;
     }
 }
