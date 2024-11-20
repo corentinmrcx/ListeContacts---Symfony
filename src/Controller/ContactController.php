@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact')]
+    #[Route('/contact', name:'app_contact_index')]
     public function index(ContactRepository $contactRepository): Response
     {
         $contacts = $contactRepository->findBy([], ['lastname' => 'ASC', 'firstname' => 'ASC']);
