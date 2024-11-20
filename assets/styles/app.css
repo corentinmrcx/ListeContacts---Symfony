@@ -1,3 +1,12 @@
 body {
-    background-color: skyblue;
+    background-color: lightgray;
+}
+
+.lastname{
+    font-weight: bold;
+    font-variant-caps: small-caps;
+}
+
+a{
+    text-decoration: none;
 }

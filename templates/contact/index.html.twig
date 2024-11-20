@@ -6,8 +6,12 @@
     <h1>Liste des contacts</h1>
     <ul>
         {% for contact in contacts %}
-            <li><a href="{{ path('app_contact_show', {id: contact.id}) }}">{{ contact.lastname }} {{ contact.firstname }}</a></li>
+            <li>
+                <a href="{{ path('app_contact_show', {id: contact.id}) }}">
+                    <span class="lastname">{{ contact.firstname }}</span>
+                    <span class="firstname">{{ contact.lastname }}</span>
+                </a>
+            </li>
         {% endfor %}
     </ul>
-
 {% endblock %}
