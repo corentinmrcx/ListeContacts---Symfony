@@ -14,7 +14,7 @@ class IndexCest
         $I->seeResponseCodeIsSuccessful(200);
         $I->seeInTitle('Liste des contacts');
         $I->see('Liste des contacts', 'h1');
-        $I->seeNumberOfElements('ul > li > a', 5);
+        $I->seeNumberOfElements('ul.contacts > li > a', 5);
     }
 
     public function trieContact(ControllerTester $I): void
@@ -30,7 +30,7 @@ class IndexCest
         );
 
         $I->AmOnPage('/contact');
-        $contacts = $I->grabMultiple('ul > li > a');
+        $contacts = $I->grabMultiple('ul.contacts > li > a');
         $ordreAttendu = [
             'Baudat Louis',
             'Lobreau Romain',
