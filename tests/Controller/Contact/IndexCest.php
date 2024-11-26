@@ -50,4 +50,28 @@ class IndexCest
         $I->seeResponseCodeIsSuccessful(200);
         $I->seeCurrentRouteIs('app_contact_show', ['id' => $contact->getId()]);
     }
+
+    public function testSearchMethod(ControllerTester $I)
+    {
+        $contact1 = ContactFactory::createOne(['firstname' => 'Lototo',  'lastname' => 'Baudat']);
+        $contact2 = ContactFactory::createOne(['firstname' => 'Romain', 'lastname' => 'Lobtoto']);
+        $contact3 = ContactFactory::createOne(['firstname' => 'Romaric',  'lastname' => 'Périchard']);
+        $contact4 = ContactFactory::createOne(['firstname' => 'Tristan', 'lastname' => 'Audinot']);
+
+        $I->amOnPage('/contact');
+
+        $search = 'to';
+        $I->fillField('search', $search);
+        $I->click('Rechercher');
+
+        $I->see('Baudat', 'ul.contacts > li > a > span.lastname');
+        $I->see('Lototo', 'ul.contacts > li > a > span.firstname');
+
+        $I->see('Lobtoto', 'ul.contacts > li > a > span.lastname');
+        $I->see('Romain', 'ul.contacts > li > a > span.firstname');
+
+        $I->dontSee('Périchard', 'ul.contacts > li > a > span.lastname');
+        $I->dontSee('Audinot', 'ul.contacts > li > a > span.lastname');
+    }
+
 }
