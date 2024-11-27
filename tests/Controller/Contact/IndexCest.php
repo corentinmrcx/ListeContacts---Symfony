@@ -73,5 +73,4 @@ class IndexCest
         $I->dontSee('Périchard', 'ul.contacts > li > a > span.lastname');
         $I->dontSee('Audinot', 'ul.contacts > li > a > span.lastname');
     }
-
 }

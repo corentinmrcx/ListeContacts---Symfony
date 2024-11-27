@@ -22,45 +22,44 @@ class ContactRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param String $txt
      * @return Contact[]
      */
-    public function search(?String $txt) : array
+    public function search(?string $txt): array
     {
         $qb = $this->createQueryBuilder('c');
-        if (!empty($txt)){
-            $qb ->where('c.firstname LIKE :txt')
+        if (!empty($txt)) {
+            $qb->where('c.firstname LIKE :txt')
                 ->where('c.lastname LIKE :txt')
                 ->setParameter('txt', '%'.$txt.'%');
         }
-        $qb ->orderBy('c.name', 'ASC')
+        $qb->orderBy('c.name', 'ASC')
             ->orderBy('c.firstname', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
 
-//    /**
-//     * @return Contact[] Returns an array of Contact objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Contact[] Returns an array of Contact objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Contact
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Contact
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

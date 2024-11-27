@@ -4,7 +4,7 @@
 
 {% block body %}
     <ul>
-        <li><a href="{{ path('app_hello_manytimes', { 'name': 'joe' , 'times': 5 }) }}">Joe</a></li>
-        <li><a href="{{ url('app_hello_manytimes', { 'name': 'bob' , 'times': 8 }) }}">Bob</a></li>
+        <li><a href="{{ path('app_hello_manytimes', {name: 'joe', times: 5}) }}">Joe</a></li>
+        <li><a href="{{ url('app_hello_manytimes', {name: 'bob', times: 8}) }}">Bob</a></li>
     </ul>
 {% endblock %}

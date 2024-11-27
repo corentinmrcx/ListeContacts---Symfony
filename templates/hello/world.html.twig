@@ -2,7 +2,7 @@
 
 {% block body %}
     {% for i in 0..10 %}
-        <p style="color: {{ cycle(["red", "green"], loop.index0) }}">Hello {{ name | capitalize }} ! ({{ i | format_number({min_integer_digit:2})}})</p>
+        <p style="color: {{ cycle(['red', 'green'], loop.index0) }}">Hello {{ name|capitalize }} ! ({{ i|format_number({min_integer_digit: 2}) }})</p>
     {% endfor %}
 {% endblock %}
 
