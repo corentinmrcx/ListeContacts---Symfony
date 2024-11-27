@@ -25,7 +25,7 @@ class ContactRepository extends ServiceEntityRepository
      * @param String $txt
      * @return Contact[]
      */
-    public function search(String $txt) : array
+    public function search(?String $txt) : array
     {
         $qb = $this->createQueryBuilder('c');
         if (!empty($txt)){
@@ -33,8 +33,8 @@ class ContactRepository extends ServiceEntityRepository
                 ->where('c.lastname LIKE :txt')
                 ->setParameter('txt', '%'.$txt.'%');
         }
-            $qb ->orderBy('c.name', 'ASC')
-                ->orderBy('c.firstname', 'ASC');
+        $qb ->orderBy('c.name', 'ASC')
+            ->orderBy('c.firstname', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
