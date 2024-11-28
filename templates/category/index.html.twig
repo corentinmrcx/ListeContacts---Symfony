@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+    <ul class="list-group">
+        {% for category in allCategory %}
+            <li class="list-group-item">{{ category.name }}</li>
+        {% else%}
+            <li>Aucune catégorie disponible.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
