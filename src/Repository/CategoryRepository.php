@@ -21,6 +21,17 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function findAllOrderedByNameWithContactCount() : array{
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.contacts', 'co')
+            ->select('c as category')
+            ->addSelect('COUNT(co) AS count')
+            ->groupBy('c.id')
+            ->orderBy('c.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return CategoryFixtures[] Returns an array of CategoryFixtures objects
     //     */
