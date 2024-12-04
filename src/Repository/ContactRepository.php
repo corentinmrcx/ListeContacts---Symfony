@@ -26,7 +26,9 @@ class ContactRepository extends ServiceEntityRepository
      */
     public function search(?string $txt): array
     {
-        $qb = $this->createQueryBuilder('c');
+        $qb = $this->createQueryBuilder('c')
+            ->leftJoin('c.category', 'cat')
+            ->addSelect('cat');
         if (!empty($txt)) {
             $qb->where('c.firstname LIKE :txt')
                 ->where('c.lastname LIKE :txt')
@@ -37,6 +39,7 @@ class ContactRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 
     public function findWithCategory(int $id): ?Contact
     {
