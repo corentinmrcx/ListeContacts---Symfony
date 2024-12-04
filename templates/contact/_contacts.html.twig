@@ -5,16 +5,12 @@
                 <span class="firstname">{{ contact.lastname }}</span>
                 <span class="lastname">{{ contact.firstname }}</span>
             </a>
-                {% if contact.category %}
+                {% if show_category ?? true and contact.category %}
                     <a href="{{ path('app_category_show', {id: contact.category.id}) }}">
                         <span class="badge text-bg-secondary">
                             {{ contact.category.name }}
                         </span>
                     </a>
-                {% else %}
-                        <span class="badge text-bg-secondary">
-                            Aucune catégorie
-                        </span>
                 {% endif %}
         </li>
     {% endfor %}
