@@ -4,9 +4,12 @@
 
 {% block body %}
     <ul class="list-group">
-        {% for category in allCategory %}
-            <li class="list-group-item">{{ category.name }}</li>
-        {% else%}
+        {% for c in allCategory %}
+            <li class="list-group-item">
+                {{ c.category.name }}
+                <span class="badge text-bg-secondary">{{ c.count }}</span>
+            </li>
+        {% else %}
             <li>Aucune catégorie disponible.</li>
         {% endfor %}
     </ul>

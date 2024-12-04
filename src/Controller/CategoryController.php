@@ -14,7 +14,14 @@ class CategoryController extends AbstractController
     #[Route('/category', name: 'app_category')]
     public function index(CategoryRepository $categoryRepository): Response
     {
-        $category = $categoryRepository->findBy([], ['name' => 'ASC']);
+        $qb = $categoryRepository->createQueryBuilder('c')
+                                    ->leftJoin('c.contacts', 'co')
+                                    ->select('c as category')
+                                    ->addSelect('COUNT(co) AS count')
+                                    ->groupBy('c.id')
+                                    ->orderBy('c.name', 'ASC');
+
+        $category = $qb->getQuery()->getResult();
 
         return $this->render('category/index.html.twig', [
             'allCategory' => $category,
