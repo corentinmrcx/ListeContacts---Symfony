@@ -1,7 +1,8 @@
-{% set pageTitle = 'Edition de {{ contact.lastname}}, {{ contact.firstname}}' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{% pageTitle %}{% endblock %}
+{% block title %}Edition de {{ contact.lastname}}, {{ contact.firstname}}{% endblock %}
 
 {% block body %}
-    <h1>{% pageTitle %}</h1>
+    <h1>Edition de {{ contact.lastname}}, {{ contact.firstname}}</h1>
+    {{ form(form) }}
 {% endblock %}
