@@ -1,0 +1,7 @@
+{% set pageTitle = 'Suppression de {{ contact.lastname }}, {{ contact.firstname }}' %}
+
+{% block title %} {% pageTitle %}  {% endblock %}
+
+{% block body %}
+    <h1>{% pageTitle %}</h1>
+{% endblock %}
