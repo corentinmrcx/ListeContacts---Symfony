@@ -4,5 +4,8 @@
 
 {% block body %}
     <h1>Edition de {{ contact.lastname}}, {{ contact.firstname}}</h1>
-    {{ form(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-outline-primary">Modifier</button>
+    {{ form_end(form) }}
 {% endblock %}
