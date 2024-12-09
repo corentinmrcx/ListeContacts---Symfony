@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Repository\ContactRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,10 +29,14 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'])]
-    public function update(Contact $contact): Response
+    public function update(Request $request, Contact $contact): Response
     {
-        return $this->render('contact/update.html.twig',
-            ['contact' => $contact]);
+        $form = $this->createForm(ContactType::class, $contact);
+
+        return $this->render('contact/update.html.twig', [
+            'contact' => $contact,
+            'form' => $form,
+        ]);
     }
 
     #[Route('/contact/create', name: 'app_contact_create')]
