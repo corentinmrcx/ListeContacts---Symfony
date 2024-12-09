@@ -42,7 +42,7 @@ class ContactController extends AbstractController
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
     public function delete(Contact $contact): Response
     {
-        return $this->render('contact/show.html.twig',
+        return $this->render('contact/delete.html.twig',
             ['contact' => $contact]);
     }
 }
