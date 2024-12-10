@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Contact;
-use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,17 +17,17 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class, [
-                'empty_data' => ''
+            ->add('firstname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
+                'empty_data' => '',
             ])
-            ->add('lastname', TextType::class, [
-                'empty_data' => ''
+            ->add('lastname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
+                'empty_data' => '',
             ])
             ->add('email', EmailType::class, [
-                'empty_data' => ''
+                'empty_data' => '',
             ])
             ->add('phone', TelType::class, [
-                'empty_data' => ''
+                'empty_data' => '',
             ])
             ->add('category', EntityType::class, [
                 'required' => false,
