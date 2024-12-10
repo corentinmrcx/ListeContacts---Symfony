@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% set pageTitle = 'Création d''un nouveau contact' %}
+{% set pageTitle = "Création d'un nouveau contact" %}
 
-{% block title %}{% pageTitle %}{% endblock %}
+{% block title %}{{ pageTitle }}{% endblock %}
 
 {% block body %}
-    <h1>{% pageTitle %}</h1>
+    <h1>{{ pageTitle }}</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-outline-dark w-100">Ajouter</button>
+    {{ form_end(form) }}
 {% endblock %}
