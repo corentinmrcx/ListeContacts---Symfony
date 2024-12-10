@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,16 +25,27 @@ class ContactController extends AbstractController
         return $this->render('contact/index.html.twig', ['contacts' => $contacts]);
     }
 
-    #[Route('/contact/{id}', requirements: ['id' => '\d+'])]
+    #[Route('/contact/{id}', name: 'app_contact_show', requirements: ['id' => '\d+'])]
     public function show(#[MapEntity(expr: 'repository.findWithCategory(id)')] Contact $contact): Response
     {
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
     }
 
-    #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'])]
-    public function update(Request $request, Contact $contact): Response
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    public function update(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_contact_show', ['id' => $contact->getId()]);
+        }
 
         return $this->render('contact/update.html.twig', [
             'contact' => $contact,
