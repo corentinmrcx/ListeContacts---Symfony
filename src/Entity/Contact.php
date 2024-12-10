@@ -15,15 +15,25 @@ class Contact
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 50)]
     #[ORM\Column(length: 30)]
     private ?string $firstname = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 50)]
     #[ORM\Column(length: 40)]
     private ?string $lastname = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 100)]
+    #[Assert\Email]
     #[ORM\Column(length: 100)]
     private ?string $email = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 20)]
+    #[Assert\Regex(pattern: '/^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4})$/', message: 'Format de téléphone invalide')]
     #[ORM\Column(length: 20)]
     private ?string $phone = null;
 
