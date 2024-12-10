@@ -7,7 +7,11 @@
 {% block body %}
     <h1>{{ pageTitle }}</h1>
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.firstname, {'label': 'Prénom'}) }}
+    {{ form_row(form.lastname, {'label': 'Nom'}) }}
+    {{ form_row(form.email, {'label': 'Email'}) }}
+    {{ form_row(form.phone, {'label': 'Numéro de téléphone'}) }}
+    {{ form_row(form.category, {'label': 'Catégorie', 'placeholder': 'Catégorie?'}) }}
     <button type="submit" class="btn btn-outline-dark w-100">Ajouter</button>
     {{ form_end(form) }}
 {% endblock %}
