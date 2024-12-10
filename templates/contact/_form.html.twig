@@ -1,0 +1,9 @@
+{% set submit_label = submit_label %}
+{{ form_start(form) }}
+    {{ form_row(form.firstname, {'label': 'Prénom'}) }}
+    {{ form_row(form.lastname, {'label': 'Nom'}) }}
+    {{ form_row(form.email, {'label': 'Email'}) }}
+    {{ form_row(form.phone, {'label': 'Numéro de téléphone'}) }}
+    {{ form_row(form.category, {'label': 'Catégorie', 'placeholder': 'Catégorie?'}) }}
+    <button type="submit" class="btn btn-outline-dark w-100">{{ submit_label }}</button>
+{{ form_end(form) }}
