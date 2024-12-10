@@ -10,6 +10,7 @@ use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
@@ -60,19 +61,26 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($contact);
             $entityManager->flush();
+
             return $this->redirectToRoute('app_contact_show', ['id' => $contact->getId()]);
         }
+
         return $this->render('contact/create.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
     public function delete(Contact $contact): Response
     {
+        $form = $this->createFormBuilder()
+            ->add('delete', SubmitType::class, [])
+            ->add('cancel', SubmitType::class, [])
+            ->getForm();
+
         return $this->render('contact/delete.html.twig',
             ['contact' => $contact]);
     }
