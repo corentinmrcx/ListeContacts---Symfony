@@ -14,7 +14,7 @@ class IndexCest
         $I->seeResponseCodeIsSuccessful(200);
         $I->seeInTitle('Liste des contacts');
         $I->see('Liste des contacts', 'h1');
-        $I->seeNumberOfElements('ul.contacts > li > a', 5);
+        $I->seeNumberOfElements('ul.contacts > li > .contact > a', 5);
     }
 
     public function trieContact(ControllerTester $I): void
@@ -30,7 +30,7 @@ class IndexCest
         );
 
         $I->AmOnPage('/contact');
-        $contacts = $I->grabMultiple('ul.contacts > li > a');
+        $contacts = $I->grabMultiple('ul.contacts > li > .contact > a');
         $ordreAttendu = [
             'Baudat Louis',
             'Lobreau Romain',
@@ -64,13 +64,13 @@ class IndexCest
         $I->fillField('search', $search);
         $I->click('Rechercher');
 
-        $I->see('Baudat', 'ul.contacts > li > a > span.lastname');
-        $I->see('Lototo', 'ul.contacts > li > a > span.firstname');
+        $I->see('Baudat', 'ul.contacts > li > .contact > a > span.lastname');
+        $I->see('Lototo', 'ul.contacts > li > .contact > a > span.firstname');
 
-        $I->see('Lobtoto', 'ul.contacts > li > a > span.lastname');
-        $I->see('Romain', 'ul.contacts > li > a > span.firstname');
+        $I->see('Lobtoto', 'ul.contacts > li > .contact > a > span.lastname');
+        $I->see('Romain', 'ul.contacts > li > .contact > a > span.firstname');
 
-        $I->dontSee('Périchard', 'ul.contacts > li > a > span.lastname');
-        $I->dontSee('Audinot', 'ul.contacts > li > a > span.lastname');
+        $I->dontSee('Périchard', 'ul.contacts > li > .contact > a > span.lastname');
+        $I->dontSee('Audinot', 'ul.contacts > li > .contact > a > span.lastname');
     }
 }

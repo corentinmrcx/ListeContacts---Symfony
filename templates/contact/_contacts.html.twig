@@ -7,10 +7,12 @@
             <a href="{{ path('app_contact_delete', {'id': contact.id}) }}">
                 <span class="material-symbols-outlined text-danger">delete</span>
             </a>
-            <a href="{{ path('app_contact_show', {id: contact.id}) }}">
-                <span class="firstname">{{ contact.lastname }}</span>
-                <span class="lastname">{{ contact.firstname }}</span>
-            </a>
+            <div class="contact">
+                <a href="{{ path('app_contact_show', {id: contact.id}) }}">
+                    <span class="firstname">{{ contact.lastname }}</span>
+                    <span class="lastname">{{ contact.firstname }}</span>
+                </a>
+            </div>
                 {% if show_category ?? true and contact.category %}
                     <a href="{{ path('app_category_show', {id: contact.category.id}) }}">
                         <span class="badge text-bg-secondary">
