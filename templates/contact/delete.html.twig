@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% set pageTitle = 'Suppression de ' ~ contact.lastname ~' '~ contact.firstname %}
+{% set pageTitle = 'Suppression de ' ~ contact.lastname ~ ', ' ~ contact.firstname %}
 
-{% block title %}{{pageTitle }}{% endblock %}
+{% block title %}{{ pageTitle }}{% endblock %}
 
 {% block body %}
     <h1>{{ pageTitle }}</h1>
-    {{ form_start(form, {'attr': {'class': 'd-flex'}}) }}
-    {{ form_row(form.delete, {'label': 'Supprimer', 'attr': {'class': 'btn btn-primary'}}) }}
-    {{ form_row(form.cancel, {'label' : 'Annuler', 'attr': {'class': 'btn btn-secondary'}}) }}
+    {{ form_start(form, {attr: {class: 'd-flex'}}) }}
+    {{ form_row(form.delete, {label: 'Supprimer', attr: {class: 'btn btn-primary'}}) }}
+    {{ form_row(form.cancel, {label: 'Annuler', attr: {class: 'btn btn-secondary'}}) }}
 {% endblock %}
