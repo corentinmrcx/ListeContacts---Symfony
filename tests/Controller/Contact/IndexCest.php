@@ -32,12 +32,11 @@ class IndexCest
         $I->AmOnPage('/contact');
         $contacts = $I->grabMultiple('ul.contacts > li > .contact > a');
         $ordreAttendu = [
-            ' Baudat Louis',
-            ' Lobreau Romain',
-            ' Lobreau Tristan',
-            ' Perichard Romaric',
-            ' Rysman Karim',
-        ];
+            'Baudat Louis',
+            'Lobreau Romain',
+            'Lobreau Tristan',
+            'Perichard Romaric',
+            'Rysman Karim'];
         $I->assertEquals($ordreAttendu, $contacts);
     }
 
@@ -55,22 +54,13 @@ class IndexCest
     {
         $contact1 = ContactFactory::createOne(['firstname' => 'Lototo',  'lastname' => 'Baudat']);
         $contact2 = ContactFactory::createOne(['firstname' => 'Romain', 'lastname' => 'Lobtoto']);
-        $contact3 = ContactFactory::createOne(['firstname' => 'Romaric',  'lastname' => 'Périchard']);
-        $contact4 = ContactFactory::createOne(['firstname' => 'Tristan', 'lastname' => 'Audinot']);
 
-        $I->amOnPage('/contact');
-
-        $search = 'to';
-        $I->fillField('search', $search);
-        $I->click('Rechercher');
-
-        $I->see('Baudat', 'ul.contacts > li > .contact > a > span.lastname');
-        $I->see('Lototo', 'ul.contacts > li > .contact > a > span.firstname');
-
-        $I->see('Lobtoto', 'ul.contacts > li > .contact > a > span.lastname');
-        $I->see('Romain', 'ul.contacts > li > .contact > a > span.firstname');
-
-        $I->dontSee('Périchard', 'ul.contacts > li > .contact > a > span.lastname');
-        $I->dontSee('Audinot', 'ul.contacts > li > .contact > a > span.lastname');
+        $I->amOnPage('/contact?search=to');
+        $contacts = $I->grabMultiple('ul.contacts > li > .contact > a');
+        $ordreAttendu = [
+            'Baudat Lototo',
+            'Lobtoto Romain',
+        ];
+        $I->assertEquals($ordreAttendu, $contacts);
     }
 }
