@@ -96,7 +96,7 @@ class ContactController extends AbstractController
 
         return $this->render('contact/delete.html.twig', [
             'contact' => $contact,
-            'form'=> $form
+            'form' => $form,
         ]);
     }
 }

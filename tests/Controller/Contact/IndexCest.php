@@ -32,11 +32,11 @@ class IndexCest
         $I->AmOnPage('/contact');
         $contacts = $I->grabMultiple('ul.contacts > li > .contact > a');
         $ordreAttendu = [
-            'Baudat Louis',
-            'Lobreau Romain',
-            'Lobreau Tristan',
-            'Perichard Romaric',
-            'Rysman Karim',
+            ' Baudat Louis',
+            ' Lobreau Romain',
+            ' Lobreau Tristan',
+            ' Perichard Romaric',
+            ' Rysman Karim',
         ];
         $I->assertEquals($ordreAttendu, $contacts);
     }

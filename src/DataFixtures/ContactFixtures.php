@@ -20,6 +20,7 @@ class ContactFixtures extends Fixture implements DependentFixtureInterface
                     'category' => CategoryFactory::random(),
                 ];
             }
+
             return [
                 'category' => null,
             ];

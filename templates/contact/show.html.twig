@@ -13,7 +13,7 @@
             <dd>{{ contact.phone }}</dd>
         <dt>Catégorie : </dt>
             <dd>
-                {{ contact.category.name ??  "Aucune catégorie" }}
+                {{ contact.category.name ?? 'Aucune catégorie' }}
             </dd>
     </dl>
 {% endblock %}
