@@ -34,10 +34,12 @@ class ContactRepository extends ServiceEntityRepository
                 ->where('c.lastname LIKE :txt')
                 ->setParameter('txt', '%'.$txt.'%');
         }
-        $qb->orderBy('c.name', 'ASC')
-            ->orderBy('c.firstname', 'ASC');
 
-        return $qb->getQuery()->getResult();
+        return $qb
+            ->addOrderBy('c.lastname', 'ASC')
+            ->addOrderBy('c.firstname', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     public function findWithCategory(int $id): ?Contact
