@@ -1,10 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% set pageTitle = 'Edition de ' ~ contact.lastname ~' '~ contact.firstname %}
-
+{% set pageTitle = 'Édition de ' ~ contact.lastname ~ ', ' ~ contact.firstname %}
 
 {% block body %}
     <h1>{{ pageTitle }}</h1>
-    {{ include('/contact/_form.html.twig', { form: form, submit_label: 'Modifier' }, with_context = false) }}
+    {{ include('/contact/_form.html.twig', {form: form, submit_label: 'Modifier'}, with_context = false) }}
 {% endblock %}
-
