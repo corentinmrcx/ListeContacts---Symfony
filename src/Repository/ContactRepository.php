@@ -31,8 +31,8 @@ class ContactRepository extends ServiceEntityRepository
             ->addSelect('cat');
         if (!empty($txt)) {
             $qb->where('c.firstname LIKE :txt')
-                ->where('c.lastname LIKE :txt')
-                ->setParameter('txt', '%'.$txt.'%');
+                ->orWhere('c.lastname LIKE :txt')
+                ->setParameter('txt', "%$txt%");
         }
 
         return $qb
