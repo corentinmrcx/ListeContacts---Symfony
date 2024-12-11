@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Factory\CategoryFactory;
-use App\Factory\ContactFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

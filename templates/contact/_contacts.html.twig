@@ -1,10 +1,10 @@
 <ul class="contacts">
     {% for contact in contacts %}
         <li>
-            <a href="{{ path('app_contact_update', {'id': contact.id}) }}">
+            <a href="{{ path('app_contact_update', {id: contact.id}) }}">
                 <span class="material-symbols-outlined text-warning">edit</span>
             </a>
-            <a href="{{ path('app_contact_delete', {'id': contact.id}) }}">
+            <a href="{{ path('app_contact_delete', {id: contact.id}) }}">
                 <span class="material-symbols-outlined text-danger">delete</span>
             </a>
             <div class="contact">
