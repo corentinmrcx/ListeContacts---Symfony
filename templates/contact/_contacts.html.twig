@@ -9,8 +9,8 @@
             </a>
             <div class="contact">
                 <a href="{{ path('app_contact_show', {id: contact.id}) }}">
-                    <span class="firstname">{{ contact.lastname }}</span>
-                    <span class="lastname">{{ contact.firstname }}</span>
+                    <span class="lastname">{{ contact.lastname }}</span>
+                    <span class="firstname">{{ contact.firstname }}</span>
                 </a>
             </div>
                 {% if show_category ?? true and contact.category %}
