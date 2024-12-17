@@ -15,6 +15,5 @@ class UserFixtures extends Fixture
         UserFactory::createMany(10);
 
         $manager->flush();
-
     }
 }

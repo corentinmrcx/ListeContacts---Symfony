@@ -75,6 +75,7 @@ class ContactController extends AbstractController
             'form' => $form,
         ]);
     }
+
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function delete(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
