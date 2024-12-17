@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class ContactController extends AbstractController
 {
@@ -36,6 +37,7 @@ class ContactController extends AbstractController
      * @throws OptimisticLockException
      * @throws ORMException
      */
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function update(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
     {
@@ -72,7 +74,7 @@ class ContactController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function delete(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
     {
