@@ -56,6 +56,7 @@ class ContactController extends AbstractController
         ]);
     }
 
+    #[IsGranted('IS_AUTHENTICATED')]
     #[Route('/contact/create', name: 'app_contact_create', methods: ['GET', 'POST'])]
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
