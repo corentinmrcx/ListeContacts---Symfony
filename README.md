@@ -92,6 +92,18 @@ Url pour se connecter a la base de donnée, remplacer par les bonnes données :
 - Lancer création d'une forge de données :
   `bin/console make:factory`
 
+### 6. Utilisateurs et Rôles
+- Utilisateur **Tony Stark**
+  - **Email** : ``root@example.com``
+  - **Mot de passe** : ``test``
+  - **Rôle** : ``ROLE_ADMIN``
+
+
+- Utilisateur **Peter Parker**
+  - **Email** : ``user@example.com``
+  - **Mot de passe** : ``test``
+  - **Rôle** : ``ROLE_USER``
+
 -----------------
 
 **Recharger le fichier de configuration ~/.bash_profile :**
