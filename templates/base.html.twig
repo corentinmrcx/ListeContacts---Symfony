@@ -35,6 +35,14 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ path('app_contact_create') }}">Ajouter un contact</a>
                         </li>
+                        <li>
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <a href="{{ path('app_logout') }}" class="btn btn-outline-danger">Déconnexion</a>
+                            {% else %}
+                                <a href="{{ path('app_login') }}" class="btn btn-outline-success">Connexion</a>
+                            {% endif %}
+
+                        </li>
                     </ul>
                     <form class="d-flex" role="search" action="{{ path('app_contact_index') }}">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
