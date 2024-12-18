@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -18,6 +19,12 @@ class UserCrudController extends AbstractCrudController
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
+    }
+
+    public function configureAssets(Assets $assets): Assets
+    {
+        return Assets::new()
+            ->addCssFile('https://fonts.googleapis.com/icon?family=Material+Icons');
     }
 
     public static function getEntityFqcn(): string
@@ -33,7 +40,18 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastname'),
             TextField::new('firstname'),
             TextField::new('email'),
-            ArrayField::new('roles'),
+            ArrayField::new('roles')
+                ->formatValue(function ($value) {
+                    $icons = [];
+                    if (in_array('ROLE_ADMIN', $value)) {
+                        $icons[] = '<span class="material-icons" title="Admin">manage_accounts</span>';
+                    }
+                    if (in_array('ROLE_USER', $value)) {
+                        $icons[] = '<span class="material-icons" title="User">person</span>';
+                    }
+
+                    return implode(' ', $icons) ?: '';
+                }),
             TextField::new('password')
                 ->hideOnIndex()
                 ->setFormType(PasswordType::class)
