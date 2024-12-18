@@ -27,6 +27,12 @@ class ContactCrudController extends AbstractCrudController
             TextField::new('email'),
             TextField::new('phone'),
             AssociationField::new('category')
+                ->formatValue(function ($category) {
+                    if (is_null($category)) {
+                        return null;
+                    }
+                    return $category->getName();
+                })
                 ->setFormTypeOptions(['choice_label' => 'name',
                     'query_builder' => function (EntityRepository $entityRepository) {
                         return $entityRepository->createQueryBuilder('c')
